@@ -6,12 +6,12 @@ var screenBoundry = 20;
 var screenSize;
 
 function setup() {
-    screenSize = new Vector(windowWidth, windowHeight);
+    screenSize = new p5.Vector(windowWidth, windowHeight);
     for(var i = 0; i < agentCount; i ++)
     {
-        agents.push(new Agent(new Vector(random(0, screenSize.x - screenBoundry), random(0, screenSize.y - screenBoundry)), new Vector(random(-1,1)*agentSpeed, random(-1,1)*agentSpeed), 255));
+        agents.push(new Agent(new p5.Vector(random(0, screenSize.x - screenBoundry), random(0, screenSize.y - screenBoundry)), new p5.Vector(random(-1,1)*agentSpeed, random(-1,1)*agentSpeed), 255));
     }
-    
+
     createCanvas(screenSize.x, screenSize.y);
 }
 
