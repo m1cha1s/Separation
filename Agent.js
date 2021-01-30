@@ -16,21 +16,36 @@ class Agent
     }
 
     intersects(agent) {
-        if(agent != this && agentSize >= this.pos.dist(agent.pos))
+        if(agent != this && agentSize*3 >= this.pos.dist(agent.pos))
         {
-            this.vel.mult(-1);
+          let tmp = p5.Vector.sub(this.pos, agent.pos)
+          this.acc.add(tmp);
         }
     }
 
     update() {
-        if (this.pos.x >= width - agentSize/2 || this.pos.x <= agentSize/2) {
-            this.vel.x *= -1;
+        if (this.pos.x >= width - agentSize/2) {
+          let tmp = p5.Vector.sub(new p5.Vector(-1, this.pos.y), this.pos)
+          this.acc.add(tmp);
         }
-        else if (this.pos.y >= height - agentSize/2 || this.pos.y <= agentSize/2)
+        else if (this.pos.x <= agentSize/2)
         {
-            this.vel.y *= -1;
+          let tmp = p5.Vector.sub(new p5.Vector(1, this.pos.y), this.pos)
+          this.acc.add(tmp);
         }
+        else if (this.pos.y >= height - agentSize/2)
+        {
+          let tmp = p5.Vector.sub(new p5.Vector(this.pos.x, -1), this.pos)
+          this.acc.add(tmp);
+        }
+        else if (this.pos.y <= agentSize/2)
+        {
+          let tmp = p5.Vector.sub(new p5.Vector(this.pos.x, 1), this.pos)
+          this.acc.add(tmp);
+        }
+        this.acc.limit(0.05);
         this.vel.add(this.acc);
+        //this.vel.limit(1);
         this.pos.add(this.vel);
         this.acc.mult(0);
     }

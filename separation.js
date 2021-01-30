@@ -1,8 +1,8 @@
-var agentCount = 2000;
+var agentCount = 1000;
 var agentSpeed = 1;
 var agents = [];
 
-var screenBoundry = 20;
+var screenBoundry = 60;
 var screenSize;
 
 function setup() {
